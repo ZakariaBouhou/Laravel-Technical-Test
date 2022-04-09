@@ -18,10 +18,10 @@
     @auth
         <small class="text-center d-block"><a href="{{ route('logout') }}">Déconnexion</a></small>
         <small class="text-center d-block"><a href="{{ route('edit', $user->id) }}">Modifer mes informations</a></small>
-        <small class="text-center d-block"><a href="{{ route('delete', $user->id) }}">Supprimer mon compte</a></small>
-    @endauth
-    
-    @if (Auth::user()->role === 'ROLE_ADMIN')
+        @endauth
+        
+        @if (Auth::user()->role === 'ROLE_ADMIN')
+        <small class="text-center d-block"><a href="{{ route('forceDelete', $user->id) }}">Supprimer mon compte</a></small>
         <small class="text-center d-block text-primary"><a href="{{ route('browse') }}">Accès au back-office</a></small>
     @endif
 

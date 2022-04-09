@@ -11,11 +11,11 @@
     </div>
     @endif
 
-    <form method="post" action="{{ route('update', $utilisateur->id) }}">
+    <form method="post" action="{{ route('update', $utilisateur->id) }}" class="d-flex flex-column align-items-center">
 
         @csrf
 
-        <div class="form-group w-25 m-auto">
+        <div class="form-group w-25">
             <label>Nom</label>
             <input type="text" class="form-control {{ $errors->has('name') ? 'error' : '' }}" name="name" value="{{ $utilisateur->name }}" id="name">
 
@@ -27,7 +27,7 @@
             @endif
         </div>
 
-        <div class="form-group w-25 m-auto">
+        <div class="form-group w-25">
             <label>Email</label>
             <input type="text" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email" value="{{ $utilisateur->email }}"
                 id="email">
@@ -39,7 +39,7 @@
             @endif
         </div>
 
-        <div class="form-group w-25 m-auto">
+        <div class="form-group w-25">
             <label>Mot de passe</label>
             <input type="password" class="form-control {{ $errors->has('password') ? 'error' : '' }}" name="password"
             id="password">
@@ -50,7 +50,7 @@
             </div>
             @endif
         </div>
-        <input type="submit" name="send" value="Modifier mes informations" class="btn btn-dark btn-block w-25 m-auto">
+        <input type="submit" name="send" value="Modifier mes informations" class="btn btn-dark btn-block w-25">
     </form>
     <small class="text-center d-block"><a href="{{ route('myprofil', $utilisateur->id) }}">Retour sur mon profil</a></small>
     <small class="text-center d-block"><a href="{{ route('logout') }}">Déconnexion</a></small>

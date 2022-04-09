@@ -12,13 +12,13 @@ class Utilisateurs extends Authenticatable
 
     protected $fillable = ['name', 'email', 'password', 'role'];
 
-    public function isAdmin () {
+    /* public function isAdmin () {
         return $this->role === 'ROLE_ADMIN';
     }
 
     public function isUser () {
         return $this->role === 'ROLE_USER';
-    }
+    } */
 
 
 }

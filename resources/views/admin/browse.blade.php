@@ -40,8 +40,9 @@
         @endforeach
     </table>
     
-    <small class="text-center d-block"><a href="{{ route('logout') }}">Déconnexion</a></small>
     <small class="text-center d-block"><a href="{{ route('myprofil', [Auth::user()->id] ) }}">Mon profil</a></small>
+    <small class="text-center d-block"><a href="{{ route('logout') }}">Déconnexion</a></small>
+    <small class="text-center d-block"><a href="{{ route('forceDelete', [Auth::user()->id]) }}">Supprimer mon compte</a></small>
    
 </div>
 
