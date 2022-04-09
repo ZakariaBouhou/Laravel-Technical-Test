@@ -11,11 +11,11 @@
     </div>
     @endif
 
-    <form action="" method="post" action="{{ action('App\Http\Controllers\UserController@connexion') }}">
+    <form action="" method="post" action="{{ action('App\Http\Controllers\UserController@connexion') }}" class="d-flex flex-column align-items-center">
 
         @csrf
 
-        <div class="form-group w-25 m-auto">
+        <div class="form-group w-25">
             <label>Email</label>
             <input type="text" class="form-control {{ $errors->has('email') ? 'error' : '' }}" name="email"
                 id="email">
@@ -27,19 +27,19 @@
             @endif
         </div>
 
-        <div class="form-group w-25 m-auto">
+        <div class="form-group w-25">
             <label>Mot de passe</label>
             <input type="password" class="form-control {{ $errors->has('password') ? 'error' : '' }}" name="password"
                 id="password">
 
             @if ($errors->has('password'))
-            <div class="error">
+            <div class="error text-danger">
                 {{ $errors->first('password') }}
             </div>
             @endif
         </div>
 
-        <input type="submit" name="send" value="Connexion" class="btn btn-dark btn-block w-25 mt-2 m-auto">
+        <input type="submit" name="send" value="Connexion" class="btn btn-dark btn-block w-25 mt-2">
     </form>
 
     @guest

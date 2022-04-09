@@ -14,12 +14,12 @@ class UserController extends Controller
 {   
     public function register () {
 
-        return view('form-register');
+        return view('create');
 
     }
 
     // Traitement des données du formulaire
-    public function userForm (Request $request) {
+    public function create (Request $request) {
 
         //dd($request);
 
@@ -101,6 +101,7 @@ class UserController extends Controller
             'password' => ['required'],
         ]);
 
+        // Si l'authentification fonctionne, on connecte l'utilisateur
         if (Auth::attempt($usersInformations)) {
 
             $user = Utilisateurs::where('email', $request->email)->first();
@@ -111,30 +112,25 @@ class UserController extends Controller
         
         else {
             
+            // Sinon on retourne sur le formulaire de login en affichant les messages d'erreurs
+            // Pas optimisé -> à revoir
             return back()->withErrors([
                 'email' => 'Informations incorrects',
-                ])->onlyInput('email');
+                'password' => 'Informations incorrects',
+                ]);
             }
             
         }
         
+     // Accès au profil et aux infos de l'utilisateur   
     public function show ($id) {
 
         $user = Utilisateurs::findOrFail($id);
-        //$user = Auth::user()->id;
+        
+        return view('profil', [
 
-        if (Gate::forUser($user)->allows('access-profil')) {
-
-            return view('profil', [
-
-                'user' => $user,
-            ]);
-            
-        }
-
-        else {
-            dd('Non');
-        }
+            'user' => $user,
+        ]);
         
     }
 

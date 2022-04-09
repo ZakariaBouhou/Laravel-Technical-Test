@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\UserController;
-use App\Models\Utilisateurs;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +15,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/*  A revoir ! 
+    - L'optimisation des routes et des controlleurs
+    - L'utilisation de Gate pour les controles d'accès (Chaque utilisateur peut avoir accès au profil de l'autre, pas bon du tout)
+*/
+
 Route::get('/', [UserController::class, 'login'])->name('login')->middleware('guest');
 
 Route::post('/', [UserController::class, 'connexion'])->middleware('guest');
 
 Route::get('/register', [UserController::class, 'register'])->name('register')->middleware(('guest'));
 
-Route::post('/register', [UserController::class, 'userForm'])->middleware('guest');
+Route::post('/register', [UserController::class, 'create'])->middleware('guest');
 
 Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
