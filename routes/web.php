@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,15 +21,12 @@ use Illuminate\Support\Facades\Route;
     - L'utilisation de Gate pour les controles d'accès (Chaque utilisateur peut avoir accès au profil de l'autre, pas bon du tout)
 */
 
-Route::get('/', [UserController::class, 'login'])->name('login')->middleware('guest');
-
+// UserController : Page d'accueil (formulaire de connexion), Page d'inscription, d'édition, de profil et de suppression
 Route::post('/', [UserController::class, 'connexion'])->middleware('guest');
 
 Route::get('/register', [UserController::class, 'register'])->name('register')->middleware(('guest'));
 
 Route::post('/register', [UserController::class, 'create'])->middleware('guest');
-
-Route::get('/logout', [UserController::class, 'logout'])->name('logout')->middleware('auth');
 
 Route::get('/profil/{id}', [UserController::class, 'show'])->whereNumber('id')->name('myprofil')->middleware('auth');
 
@@ -39,6 +37,13 @@ Route::post('/profil/{id}/update', [UserController::class, 'update'])->whereNumb
 Route::get('/profil/{id}/delete', [UserController::class, 'delete'])->whereNumber('id')->name('delete')->middleware('auth');
 
 
+// LoginController : Page de connexion, déconnexion
+Route::get('/', [LoginController::class, 'login'])->name('login')->middleware('guest');
+
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout')->middleware('auth');
+
+
+// AdminController : Page de suppression forcée d'un utilisateur, bo avec liste des utilisateurs, formulaire de création utilisateur
 Route::get('/profil/{id}/delete/force', [AdminController::class, 'forceDelete'])->whereNumber('id')->name('forceDelete')->middleware(['auth', 'admin']);
 
 Route::get('/admin', [AdminController::class, 'browse'])->name('browse')->middleware(['auth', 'admin']);

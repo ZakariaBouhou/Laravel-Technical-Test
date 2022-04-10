@@ -88,12 +88,6 @@ class UserController extends Controller
 
     }
 
-    public function login () {
-
-        return view('login');
-        
-    }
-    
     public function connexion (Request $request) {
       
         $usersInformations = $request->validate([
@@ -134,11 +128,5 @@ class UserController extends Controller
         
     }
 
-    public function logout () {
-
-        Auth::logout();
-
-        return redirect()->route('login')->with('success', 'Utilisateur déconnecté');
-    }
     
 }
