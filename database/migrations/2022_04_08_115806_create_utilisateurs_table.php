@@ -14,7 +14,7 @@ class CreateUtilisateursTable extends Migration
     public function up()
     {
         Schema::create('utilisateurs', function (Blueprint $table) {
-            $table->id();
+            $table->id()->autoIncrement();
             $table->string('name');
             $table->string('email')->unique();
             $table->string('role')->default('ROLE_USER');
